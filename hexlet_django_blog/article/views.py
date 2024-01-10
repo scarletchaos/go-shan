@@ -1,14 +1,13 @@
 from django.shortcuts import render
-from django.views.generic.base import TemplateView
+from django.views import View
 
 
-class IndexPageView(TemplateView):
+
+class IndexView(View):
     template_name = "articles.html"
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, context={"appname": "article"})
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["appname"] = "article"
-        return context
 
 
 # Create your views here.
